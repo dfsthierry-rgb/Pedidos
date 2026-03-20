@@ -443,7 +443,7 @@ export default function App() {
         <div className="flex items-center gap-3">
           <div className="relative flex items-center justify-center w-10 h-10 bg-yellow-500/10 rounded-xl border border-yellow-500/20 overflow-hidden">
             <img 
-              src="/logo.svg" 
+              src="./logo.svg"
               alt="BeeMesh Logo" 
               className="w-6 h-6 object-contain relative z-10"
               onError={(e) => {
