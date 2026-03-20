@@ -166,6 +166,27 @@ const STATUS_ICONS: Record<string, React.ReactNode> = {
   'Cancelado': <XCircle className="w-4 h-4" />,
 };
 
+class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, error: any}> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true, error };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: '20px', color: 'red' }}>
+          <h1>Algo deu errado no App</h1>
+          <pre>{this.state.error?.message}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [orders, setOrders] = useState<Order[]>(MOCK_ORDERS);
   const [filterTab, setFilterTab] = useState<'Todas' | 'Interna' | 'Externa' | 'Não Analisado' | 'Cancelado'>('Todas');
@@ -437,6 +458,7 @@ export default function App() {
   };
 
   return (
+    <ErrorBoundary>
     <div className="min-h-screen bg-bg-main text-text-muted font-sans selection:bg-blue-500/30 transition-colors duration-200">
       {/* Navbar */}
       <nav className="flex items-center justify-between px-6 py-4 bg-bg-main border-b border-border-color transition-colors duration-200">
@@ -1048,5 +1070,6 @@ export default function App() {
         </div>
       )}
     </div>
+    </ErrorBoundary>
   );
 }
