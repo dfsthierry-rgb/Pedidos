@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script type="module" crossorigin src="./assets/index-D97Fga0V.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C0VfufFc.css">
+  </head>
+  <body>
+    <div id="root">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; background-color: #0A0E17; color: white;">
+        Loading BeeMesh...
+      </div>
+    </div>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        document.getElementById('root').innerHTML =
+          '<div style="color: red; padding: 20px; background: #0A0E17; min-height: 100vh; font-family: monospace;">' +
+          '<h1>Erro ao carregar o site</h1>' +
+          '<p>' + message + '</p>' +
+          '</div>';
+      };
+    </script>
+  </body>
+</html>
+
