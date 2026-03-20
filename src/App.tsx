@@ -470,11 +470,11 @@ export default function App() {
       {/* Navbar */}
       <nav className="flex items-center justify-between px-6 py-4 bg-bg-main border-b border-border-color transition-colors duration-200">
         <div className="flex items-center gap-3">
-          <div className="relative flex items-center justify-center w-10 h-10 bg-yellow-500/10 rounded-xl border border-yellow-500/20 overflow-hidden">
+          <div className="relative flex items-center justify-center w-10 h-10 overflow-hidden">
             <img 
-              src="./logo.svg"
+              src="./logo.png"
               alt="BeeMesh Logo" 
-              className="w-6 h-6 object-contain relative z-10"
+              className="w-10 h-10 object-contain relative z-10"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
                 (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
@@ -499,7 +499,7 @@ export default function App() {
       </nav>
 
       {/* Main Content */}
-      <main className="p-6 max-w-[100vw] overflow-hidden">
+      <main className="p-6 max-w-[100vw]">
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className="text-2xl font-semibold text-text-main">Solicitações Produção / Compras</h2>
           
@@ -605,14 +605,14 @@ export default function App() {
 
         {/* Table Container */}
         <div className="bg-bg-main border border-border-color/60 rounded-lg overflow-hidden shadow-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="text-xs text-text-faint uppercase bg-bg-card/50 border-b border-border-color/60">
+          <div className="overflow-auto max-h-[700px] custom-scrollbar">
+            <table className="w-full text-sm text-left border-separate border-spacing-0">
+              <thead className="text-xs text-text-faint uppercase bg-bg-card/90 backdrop-blur-sm border-b border-border-color/60 sticky top-0 z-30">
                 <tr>
-                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[140px] min-w-[140px] sticky left-0 bg-bg-card z-20 border-r border-border-color/60">Data Solicitação</th>
-                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[160px] min-w-[160px] sticky left-[140px] bg-bg-card z-20 border-r border-border-color/60">Solicitado por</th>
-                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[160px] min-w-[160px] sticky left-[300px] bg-bg-card z-20 border-r border-border-color/60">Vendedor</th>
-                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[200px] min-w-[200px] sticky left-[460px] bg-bg-card z-20 border-r border-border-color/60 shadow-[4px_0_12px_rgba(0,0,0,0.3)]">Cliente</th>
+                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[140px] min-w-[140px] sticky left-0 top-0 bg-bg-card z-40 border-r border-border-color/60">Data Solicitação</th>
+                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[160px] min-w-[160px] sticky left-[140px] top-0 bg-bg-card z-40 border-r border-border-color/60">Solicitado por</th>
+                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[160px] min-w-[160px] sticky left-[300px] top-0 bg-bg-card z-40 border-r border-border-color/60">Vendedor</th>
+                  <th className="px-4 py-4 font-medium whitespace-nowrap w-[200px] min-w-[200px] sticky left-[460px] top-0 bg-bg-card z-40 border-r border-border-color/60 shadow-[4px_0_12px_rgba(0,0,0,0.3)]">Cliente</th>
                   <th className="px-4 py-4 font-medium whitespace-nowrap">CNPJ/CPF</th>
                   <th className="px-4 py-4 font-medium whitespace-nowrap">Código SKU</th>
                   <th className="px-4 py-4 font-medium whitespace-nowrap min-w-[250px]">Descrição SKU</th>
@@ -629,7 +629,7 @@ export default function App() {
                   <th className="px-4 py-4 font-medium whitespace-nowrap">Prev. Entrega</th>
                   <th className="px-4 py-4 font-medium whitespace-nowrap min-w-[220px]">Status Análise & Tempos</th>
                   <th className="px-4 py-4 font-medium whitespace-nowrap">Responsável (Ação)</th>
-                  <th className="px-4 py-4 font-medium whitespace-nowrap text-center sticky right-0 bg-bg-card/90 backdrop-blur-sm border-l border-border-color/60">Ações</th>
+                  <th className="px-4 py-4 font-medium whitespace-nowrap text-center sticky right-0 top-0 bg-bg-card/90 backdrop-blur-sm z-40 border-l border-border-color/60">Ações</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60">
