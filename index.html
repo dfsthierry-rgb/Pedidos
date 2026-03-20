@@ -13,11 +13,36 @@
     </div>
     <script type="module" src="src/main.tsx"></script>
     <script>
+      // Diagnostic script to help identify common deployment issues
       window.onerror = function(message, source, lineno, colno, error) {
+        let errorTitle = 'Erro ao carregar o site';
+        let errorMessage = message;
+        let helpMessage = '';
+
+        // Detect if a .tsx file failed to load with a MIME type error (common when serving root instead of dist)
+        if (source && source.endsWith('.tsx')) {
+          errorTitle = 'Configuração de Hospedagem Incorreta';
+          errorMessage = 'O navegador tentou carregar um arquivo TypeScript (.tsx) diretamente, o que não é suportado.';
+          helpMessage = '<div style="margin-top: 20px; color: #aaa; font-size: 0.9em;">' +
+            '<p><strong>Como corrigir:</strong></p>' +
+            '<ul>' +
+            '<li>Você está tentando visualizar o código fonte em vez do site compilado.</li>' +
+            '<li>Certifique-se de que seu serviço de hospedagem está apontando para a pasta <code>dist/</code>.</li>' +
+            '<li>Se estiver usando GitHub Pages, configure para servir a branch <code>gh-pages</code>.</li>' +
+            '</ul>' +
+            '</div>';
+        }
+
         document.getElementById('root').innerHTML =
-          '<div style="color: red; padding: 20px; background: #0A0E17; min-height: 100vh; font-family: monospace;">' +
-          '<h1>Erro ao carregar o site</h1>' +
-          '<p>' + message + '</p>' +
+          '<div style="color: white; padding: 40px; background: #0A0E17; min-height: 100vh; font-family: sans-serif; line-height: 1.6;">' +
+          '<h1 style="color: #ff4444; margin-bottom: 10px;">' + errorTitle + '</h1>' +
+          '<p style="font-size: 1.1em;">' + errorMessage + '</p>' +
+          helpMessage +
+          '<pre style="margin-top: 20px; padding: 10px; background: #1a1f2e; border-radius: 4px; font-size: 0.8em; overflow: auto;">' +
+          'Source: ' + (source || 'unknown') + '\n' +
+          'Line: ' + (lineno || 'N/A') + '\n' +
+          'Stack: ' + (error ? error.stack : 'N/A') +
+          '</pre>' +
           '</div>';
       };
     </script>

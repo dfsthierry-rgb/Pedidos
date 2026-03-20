@@ -166,14 +166,21 @@ const STATUS_ICONS: Record<string, React.ReactNode> = {
   'Cancelado': <XCircle className="w-4 h-4" />,
 };
 
-class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, error: any}> {
-  constructor(props: any) {
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: any;
+}
+
+class ErrorBoundary extends React.Component<{children: React.ReactNode}, ErrorBoundaryState> {
+  constructor(props: {children: React.ReactNode}) {
     super(props);
     this.state = { hasError: false, error: null };
   }
-  static getDerivedStateFromError(error: any) {
+
+  static getDerivedStateFromError(error: any): ErrorBoundaryState {
     return { hasError: true, error };
   }
+
   render() {
     if (this.state.hasError) {
       return (
